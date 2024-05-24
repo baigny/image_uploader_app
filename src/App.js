@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/hello')
-      .then(response => response.json())
-      .then(data => setMessage(data.message));
+    axios.get('http://localhost:5000/api/hello')
+      .then(response => {
+        setMessage(response.data.message);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the data!', error);
+      });
   }, []);
 
   return (
