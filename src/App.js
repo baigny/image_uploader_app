@@ -1,24 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import "./App.css";
+import UploadImages from "./components/UploadImages";
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/hello')
-      .then(response => {
-        setMessage(response.data.message);
-      })
-      .catch(error => {
-        console.error('There was an error fetching the data!', error);
-      });
-  }, []);
-
   return (
-    <div className="flex items-center justify-center h-screen">
-      <h1 className="text-3xl font-bold">
-        {message}
-      </h1>
+    <div className="App">
+      <div className="container mx-auto w-3/4">
+        <div className="my-6">
+          <h1 className="text-3xl text-center font-bold underline text-red-600">
+            Multi Image Uploader Application
+          </h1>
+          <p className="text-gray-600 mb-4">
+            You can upload images in any format (JPEG, PNG, GIF, etc.).
+          </p>
+        </div>
+        <UploadImages />
+      </div>
     </div>
   );
 }
